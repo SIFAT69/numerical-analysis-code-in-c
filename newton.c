@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<stdlib.h>
+
+#define    f(x)    2*x*x*x - 2.5*x -5
+
+
+#define   g(x)  6*x*x-2.5
+
+void main()
+{
+	 float x0, x1, f0, f1, g0, e;
+	 int step = 1, N;
+
+
+	 printf("\nEnter initial guess:\n");
+	 scanf("%f", &x0);
+	 printf("Enter tolerable error:\n");
+	 scanf("%f", &e);
+	 printf("Enter maximum iteration:\n");
+	 scanf("%d", &N);
+
+
+
+	 do
+	 {
+		  g0 = g(x0);
+		  f0 = f(x0);
+		  if(g0 == 0.0)
+		  {
+			   printf("Mathematical Error.");
+			   exit(0);
+		  }
+
+
+		  x1 = x0 - f0/g0;
+
+
+
+		  x0 = x1;
+
+		  step = step+1;
+
+		  if(step > N)
+		  {
+			   printf("Not Convergent.");
+			   exit(0);
+		  }
+
+		  f1 = f(x1);
+
+	 }while(fabs(f1)>e);
+
+	 printf("\nRoot is: %f", x1);
+	 getch();
+}
